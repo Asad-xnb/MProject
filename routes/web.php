@@ -16,6 +16,10 @@ Route::get('/food-detail', function () {
     return view('food-detail');
 });
 
+Route::get('/menu', function () {
+    return view('menu');
+});
+
 Route::get('/signup', [AuthController::class, 'showFormRegister']);
 
 Route::get('/login', [AuthController::class, 'showFormLogin']);

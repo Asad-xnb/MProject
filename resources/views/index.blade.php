@@ -8,7 +8,7 @@
     <div class="p-5" style="background-color: rgba(0, 0, 0, 0.8); border-radius: 10px;">
       <h1 class="display-4 text-white">Welcome to Our Restaurant</h1>
       <p class="lead text-white">Experience the best dining experience with us.</p>
-      <a class="btn btn-secondary btn-lg" href="#" role="button" style="background-color: #6c757d; border-color: #6c757d;">Learn more</a>
+      <a class="btn btn-secondary btn-lg" href="/menu" role="button" style="background-color: #6c757d; border-color: #6c757d;">Learn more</a>
     </div>
   </div>
   <div class="container my-5">
