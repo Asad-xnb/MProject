@@ -31,3 +31,8 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
 Route::get('/admin/add-food', [AdminController::class, 'addFood'])->middleware('auth');
 Route::post('/admin/add-food', [AdminController::class, 'createFood'])->middleware('auth');
+
+Route::get('/admin/delete/{id}', [AdminController::class, 'deleteFood'])->middleware('auth');
+Route::get('/admin/update/{id}', [AdminController::class, 'editFood'])->middleware('auth');
+
+Route::post('/admin/update/', [AdminController::class, 'updateFood'])->middleware('auth');

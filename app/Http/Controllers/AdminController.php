@@ -14,7 +14,9 @@ class AdminController extends Controller
         if (Auth::user()->email != 'admin@admin.com') {
             return redirect('/');
         }
-        return view('admin');
+
+        $foods = Food::all();
+        return view('admin', compact('foods'));
     }
 
     public function addFood()
@@ -22,6 +24,7 @@ class AdminController extends Controller
         if (Auth::user()->email != 'admin@admin.com') {
             return redirect('/');
         }
+        
         return view('admin-add-food');
     }
 
@@ -50,4 +53,46 @@ class AdminController extends Controller
         return redirect('/admin/add-food')->with('success', 'Food has been added');
     }
 
+    public function deleteFood($id)
+    {
+        if (Auth::user()->email != 'admin@admin.com') {
+            return redirect('/');
+        }
+        Food::destroy($id);
+        return redirect('/admin')->with('success', 'Food has been deleted');
+    }
+
+    public function editFood($id)
+    {
+        if (Auth::user()->email != 'admin@admin.com') {
+            return redirect('/');
+        }
+        $food = Food::find($id);
+        return view('admin-update-food', compact('food'));
+    }
+
+    public function updateFood(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'description' => 'required',
+            'category' => 'required'
+        ]);
+        if (Auth::user()->email != 'admin@admin.com') {
+            return redirect('/');
+        }
+        $food = Food::find($request->id);
+        $food->name = $request->name;
+        $food->price = $request->price;
+        $food->description = $request->description;
+        $food->category = $request->category;
+        if ($request->image) {
+            $imageName = time().'.'.$request->image->extension();  
+            $food->image = $imageName;
+            $request->image->move(public_path('images'), $imageName);
+        }
+        $food->save();
+        return redirect('/admin')->with('success', 'Food has been updated');
+    }
 }

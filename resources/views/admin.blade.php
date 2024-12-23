@@ -26,6 +26,13 @@
             <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2 text-primary">Manage Food Items</h1>
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
                 </div>
 
    
@@ -43,26 +50,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Margherita Pizza</td>
-                                    <td>$12.00</td>
-                                    <td><img src="/Styles/images/pizza.jpg" alt="Food Image" width="50"></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning">Edit</button>
-                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Cheeseburger</td>
-                                    <td>$10.00</td>
-                                    <td><img src="/Styles/images/burger.jpg" alt="Food Image" width="50"></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning">Edit</button>
-                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                    </td>
-                                </tr>
+                                @foreach ($foods as $food)
+                                    <tr>
+                                        <td>{{ $food['id'] }}</td>
+                                        <td>{{ $food['name'] }}</td>
+                                        <td>RS {{ $food['price'] }}</td>
+                                        <td><img src="/images/{{ $food['image'] }}" alt="{{ $food['name'] }} image" width="50"></td>
+                                        <td>
+                                            <a href="/admin/update/{{ $food['id'] }}"> <button class="btn btn-sm btn-warning">Edit</button></a>
+                                            <a href="/admin/delete/{{ $food['id'] }}"> <button class="btn btn-sm btn-danger">Delete</button></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
