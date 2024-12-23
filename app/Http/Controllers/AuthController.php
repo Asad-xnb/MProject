@@ -40,7 +40,9 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
-
+        if ($request->email == 'admin@admin.com'){
+            return redirect('/admin');
+        }
         return redirect()->route('home');
     }
 
@@ -61,6 +63,9 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();  
 
+            if ($request->email == 'admin@admin.com'){
+                return redirect('/admin');
+            }
             return redirect('/');
         }
 
