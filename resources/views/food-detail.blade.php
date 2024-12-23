@@ -9,16 +9,15 @@
             <div class="row g-0">
                 <!-- Food Image -->
                 <div class="col-md-6">
-                    <img src="/Styles/images/coparefood.jpeg" alt="Food Image" class="img-fluid" style="object-fit: cover; height: 100%; width: 100%;">
+                    <img src="/images/{{$food['image']}}" alt="{{$food['name']}} image" class="img-fluid" style="object-fit: cover; height: 100%; width: 100%; max-height: 500px;">
                 </div>
-                <!-- Food Info -->
                 <div class="col-md-6 p-4 d-flex flex-column justify-content-between bg-white">
                     <div>
-                        <h2 class="mb-3 text-primary">Food Name</h2>
+                        <h2 class="mb-3 text-primary">{{$food['name']}}</h2>
                         <p class="mb-4 text-muted">
-                            Description of the food goes here. It can be a detailed description about the ingredients, taste, and other relevant information.
+                            {{$food['description']}}
                         </p>
-                        <h4 class="text-success">Price: $10.00</h4>
+                        <h4 class="text-success">Price: RS {{ $food['price'] }}</h4>
                     </div>
                     <button class="btn btn-secondary btn-lg">Add to Cart</button>
                 </div>

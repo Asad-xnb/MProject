@@ -7,6 +7,9 @@
     <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
         <div class="card shadow-lg rounded-lg p-4" style="max-width: 500px; width: 100%;">
             <h2 class="text-center mb-4 text-primary">Login</h2>
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
             <form action="/login" method="POST">
                 @csrf
                 <div class="mb-3">

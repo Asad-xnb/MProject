@@ -17,6 +17,11 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         @if (Auth::check())
+          @if (Auth::user()->email == 'admin@admin.com')
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Dashboard</a>
+            </li>
+          @endif
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>

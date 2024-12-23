@@ -6,20 +6,23 @@ use App\Http\Controllers\AdminController;
 use App\Models\Food;
 
 Route::get('/', function () {
-    return view('index');
+    $foods = Food::take(3)->get();
+    return view('index', compact('foods'));
 })->name('home');
 
-Route::get('/menu', function () {
-    return view('menu');
-});
-
-Route::get('/food-detail', function () {
-    return view('food-detail');
+Route::get('/contact', function () {
+    return view('contact');
 });
 
 Route::get('/menu', function () {
     $foods = Food::all();
     return view('menu', compact('foods'));
+});
+
+Route::get('/food-detail/{id}', function ($id) {
+
+    $food = Food::find($id);
+    return view('food-detail', compact('food'));
 });
 
 Route::get('/signup', [AuthController::class, 'showFormRegister']);
